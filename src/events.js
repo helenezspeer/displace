@@ -55,7 +55,9 @@ export function mousemove(offsetW, offsetH, e){
 	this.handleMove(el, x, y);
 
 	// prevent highlighting text when dragging
-	e.preventDefault();
+	// Removing this to prevent error in Chrome:
+	// '[Intervention] Unable to preventDefault inside passive event listener due to target being treated as passive.'
+	// e.preventDefault();
 	return false;
 };
 

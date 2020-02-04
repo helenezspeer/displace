@@ -2,7 +2,7 @@ import {
 	generateClamp,
 	isRelative,
 	generateMoveFn
-} from 'utils';
+} from './utils';
 
 import {
 	// mouse
@@ -12,7 +12,7 @@ import {
 	// touch
 	touchstart,
 	touchstop
-} from 'events';
+} from './events';
 
 const moveFn = generateMoveFn();
 
@@ -58,7 +58,7 @@ class Displace {
 		document.removeEventListener('mousemove', events.mousemove, false);
 		document.removeEventListener('mouseup', events.mouseup, false);
 
-		this.handle.removeEventListener('touchstart', events.touchstart, false);
+		this.handle.removeEventListener('touchstart', events.touchstart, { passive: true });
 		document.removeEventListener('touchmove', events.touchmove, false);
 		document.removeEventListener('touchstop', events.touchstop, false);
 		document.removeEventListener('touchmove', this.events.scrollFix, { passive: false });
@@ -127,7 +127,7 @@ function setup(){
 
 	// add init events to handle
 	this.handle.addEventListener('mousedown', this.events.mousedown, false);
-	this.handle.addEventListener('touchstart', this.events.touchstart, false);
+	this.handle.addEventListener('touchstart', this.events.touchstart, { passive: true });
 
 	// scroll fix for mobile
 	document.addEventListener('touchmove', this.events.scrollFix, { passive: false });
